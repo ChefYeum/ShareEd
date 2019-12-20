@@ -1,4 +1,4 @@
-{
+const dummyResponse = {
     "title": "Notes Prototype",
     "body": {
         "content": [
@@ -2592,4 +2592,6 @@
     },
     "suggestionsViewMode": "PREVIEW_WITHOUT_SUGGESTIONS",
     "documentId": "1OqglQWvFyZtkYBVXrhsFYn-rDcQBLXbnpiF2e191bBU"
-}
+};
+
+export dummyResponse;
