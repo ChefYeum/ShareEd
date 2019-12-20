@@ -2,7 +2,7 @@
 
 class HElem extends React.Component{
     render(){return(
-        React.createElement('h'+this.props.size,{className:'markdown-body'},this.props.content)
+        React.createElement('h'+this.props.size,{},this.props.content)
     );}
 }
 
@@ -14,7 +14,7 @@ class LinkElem extends React.Component{
 
 ///takes in a raw element table and produces react components appropriately
 ///each element in the table is an object with
-class ElemContainer extends React.Component{
+class MarkdownContainer extends React.Component{
     constructor(props){
         super(props);
         this.state = {
@@ -40,11 +40,9 @@ class ElemContainer extends React.Component{
         }
     }
     render(){
-        let header = React.createElement('div',{},
-            React.createElement(HElem,{size:'1',content:this.state.title}));
-        let elements = this.state.elemTable.map(elem => this.createElement(elem));
-        elements.unshift(header);
-        return(elements);
+        let innerElements = this.state.elemTable.map(elem => this.createElement(elem));
+        let container = React.createElement('div',{className:'markdown-body'},innerElements);
+        return(container);
     }
 
 }
@@ -74,7 +72,7 @@ class rawElement{
 }
 class App extends React.Component{
     render(){return(
-        React.createElement(ElemContainer,{title:'manaal lazy',elemTable:[new rawElement('h1','header1',null),new rawElement('h2','header2',null)]})
+        React.createElement(MarkdownContainer,{title:'manaal lazy',elemTable:[new rawElement('h1','header1',null),new rawElement('h3','header3',null)]})
     );
     }
 }
