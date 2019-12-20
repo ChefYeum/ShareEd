@@ -41,7 +41,7 @@ class MarkdownContainer extends React.Component{
             title:props.title,
         }
     }
-    //same for internal and external, when internal link, url is file title
+    //same for internal and external, when internal link, url is Folder title
     handleClick(url){
         this.props.handleClick(url);
     }
@@ -93,7 +93,7 @@ class rawElement{
     }
 }
 
-class File {
+class Folder {
     constructor(title,parent,isLeaf,children,elements){
         this.title = title;
         this.parent = parent;
@@ -103,19 +103,22 @@ class File {
     }
 }
 
-class FileStructure{
-    constructor(files){
-        this.files = files;
+class FolderStructure{
+    constructor(Folders){
+        this.Folders = Folders;
     }
 }
 //test stuff
 let testelements = [new rawElement('h1','Week1'),new rawElement('h2','death by boolean')];
 
-let testFile1 = new File('Year1',null,false,null);
-let testFile2 = new File('DMMR',testFile1,true,null,testelements);
-testFile1.children = [testFile2];
+let testFolder1 = new Folder('Year1',null,false,null);
+let testFolder2 = new Folder('subYear folder',testFolder1,false,null);
+let testFolder3 = new Folder('DMMR',testFolder1,true,null,testelements);
+testFolder1.children = [testFolder2];
+testFolder2.children = [testFolder3];
+testFolder3.children = null;
 
-let testFileStructure = new FileStructure([testFile1,testFile2]);
+let testFolderStructure = new FolderStructure([testFolder1,testFolder2]);
 //end of test stuff
 class App extends React.Component{
     constructor(props)
@@ -124,35 +127,38 @@ class App extends React.Component{
         this.state={
             GDFound: false,
             GDLink: null,
-            fileStructure: null,
-            currentFileID: null,
+            FolderStructure: null,
+            currentFolderID: null,
         }
     }
-    getCurrentFile()
+    getCurrentFolder()
     {
-        if(this.state.currentFileID === null){return 'root'}
+        if(this.state.currentFolderID === null){return 'root'}
         else{
-            return(this.state.fileStructure.files[this.state.currentFileID]);
+            return(this.state.FolderStructure.Folders[this.state.currentFolderID]);
         }
     }
     handleLinkSubmission(link){
         this.setState({GDFound: true,
                         GDLink: link,
-                        fileStructure: testFileStructure,
-                        currentFileID: null});
+                        FolderStructure: testFolderStructure,
+                        currentFolderID: null});
         
     }
     handleClick = (url) => {
-        let currFile =this.getCurrentFile();
-        if(currFile === 'root' || !currFile.isLeaf){
-            //switch current file
 
-            //find by 'url' or title
-            let clickedFile = this.state.fileStructure.files.find((file)=> file.title === url);
-            let index = this.state.fileStructure.files.indexOf(clickedFile);
-            //CAUTION, bad approach
+        let currFolder =this.getCurrentFolder();
+        if(currFolder === 'root' || !currFolder.isLeaf){
+            //switch current Folder
 
-            this.setState({currentFileID: index});
+            for(let i = 0; i < this.state.FolderStructure.Folders.length;i++)
+            {
+                if(url === this.state.FolderStructure.Folders[i].title)
+                {
+                    var index = i;
+                }
+            }
+            this.setState({currentFolderID: index});
 
         }
         else{
@@ -164,42 +170,40 @@ class App extends React.Component{
     render(){
         if(this.state.GDFound){
 
-            let currFile = this.getCurrentFile();
+            let currFolder = this.getCurrentFolder();
+            let elements = null;
+            let title = null;
+            let handleClick = this.handleClick;
 
-            if(currFile === 'root')
+            let markdownContainer = null;
+
+            if(currFolder === 'root')
             {
-                let outerFolders = this.state.fileStructure.files.filter((file)=> file.parent === null);
+                let outerFolders = this.state.FolderStructure.Folders.filter((Folder)=> Folder.parent === null);
 
-                let elements = outerFolders.map((file)=> new rawElement('Ilink',file.title,file.title));
-                return(
-                   React.createElement(MarkdownContainer,{handleClick:this.handleClick,elemTable:elements,title:"root"},null)
-                );
+                elements = outerFolders.map((Folder)=> new rawElement('Ilink',Folder.title,Folder.title));
+                title = 'root';
             }
-            //when we reach a file which is a module (e.g. it has a docs file with a markdown)
-            else if(currFile.isLeaf)
+            //when we reach a Folder which is a module (e.g. it has a docs Folder with a markdown)
+            else if(currFolder.isLeaf)
             {
-                return(React.createElement(MarkdownContainer,
-                    {
-                    handleClick:this.handleClick,
-                    elemTable:currFile.elements,
-                    title:currFile.title
-                    },
-                    null));
+                elements = currFolder.elements;
+                title = currFolder.title;
             }
             //when we're at a folder which isn't such a module
             else{
+                elements = currFolder.children.map((Folder)=> new rawElement('Ilink',Folder.title,Folder.title));
 
-                let elements = currFile.children.map((childFile)=> new rawElement('Ilink',childFile.title,childFile.title));
-                return(
-                   React.createElement(MarkdownContainer,
-                    {
-                    handleClick:this.handleClick,
-                    elemTable:elements,
-                    title:currFile.title
-                    }
-                    ,null)
-                );
+                title = currFolder.title;
             }
+
+            markdownContainer = React.createElement(MarkdownContainer,
+                {
+                    handleClick:handleClick,
+                    elemTable:elements,
+                    title:title,
+                })
+            return(markdownContainer);
         }else{
             return(
             React.createElement(MainPage,{handleSubmission:((link)=>this.handleLinkSubmission(link))},null)
