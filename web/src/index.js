@@ -1,5 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
+import ParsedDrive from './utils/ParsedDrive';
+import DriveFile from './utils/DriveFile';
 
-ReactDOM.render(<App />,document.getElementById('root'));
+
+const testDrive= new ParsedDrive('Better Informatics Drive');
+testDrive.files = [
+    new DriveFile('Year1'),
+    new DriveFile('Year2'),
+    new DriveFile('Year3'),
+    new DriveFile('Year4'),
+    new DriveFile('Masters'),
+    new DriveFile('ILA'),
+    new DriveFile('CAP'),
+    new DriveFile('CL'),
+    new DriveFile('FP'),
+    new DriveFile('DMMR'),
+    new DriveFile('CS'),
+    new DriveFile('SE'),
+]
+
+testDrive.files[0].setChildren(testDrive.files[5],
+    testDrive.files[6],
+    testDrive.files[7],
+    testDrive.files[8]);
+testDrive.files[1].setChildren(testDrive.files[9],
+    testDrive.files[10],
+    testDrive.files[11]);
+
+    ReactDOM.render(<App currentDrive={testDrive}/>,document.getElementById('root'));
