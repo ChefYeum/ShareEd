@@ -1,10 +1,22 @@
 import React, { Component } from 'react';
+import NavBar from './NavBar';
+import DriveDisplay from './DriveDisplay';
+
 
 class App extends Component {
+    state = {
+        currentDrive: this.props.currentDrive,
+    }
+
     render() {
         return (
             <div>
-                <h1>My React App</h1>
+                <div>
+                    <NavBar/>
+                </div>
+                <div>
+                    <DriveDisplay drive={this.state.currentDrive}/>
+                </div>
             </div>
         );
     }
