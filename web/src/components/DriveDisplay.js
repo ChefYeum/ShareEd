@@ -12,7 +12,6 @@ function DriveDisplay(props){
     const currentFile = props.drive.files[currentFileI];
     //each file can be a leaf, we decide the content based on that
     const useChildrenAsContent = currentFile.isLeaf ? true:false;
-    console.log()
     return(
         <div>
             <div style={titleStyle}>
@@ -20,10 +19,13 @@ function DriveDisplay(props){
             </div>
             <div>
                 <ul>
-                    {useChildrenAsContent? currentFile.children: currentFile.children.filter(CFile=>CFile != null).map(CFile => 
-                        <li key={CFile.id} onClick={()=>setCurrentFile(props.drive.files.indexOf(CFile))}>
-                        {CFile.name}</li>)}
-                    
+                    {useChildrenAsContent ?
+                    currentFile.children :
+                    currentFile.children.filter(CFile => CFile != null)
+                                        .map(CFile =>
+                                            <li key={CFile.id} onClick={()=>setCurrentFile(props.drive.files.indexOf(CFile))}>
+                                                {CFile.name}        
+                                            </li>)}
                 </ul>
             </div>
         </div>
