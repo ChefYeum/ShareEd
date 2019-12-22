@@ -39,7 +39,7 @@ testDrive.files[2].setChildren([
     testDrive.files[11],
     testDrive.files[12]]);
 
-testDrive.files[6].setChildrenJSX([<h1 key ='1'>hello</h1>,<a key = '2'>link</a>])
+testDrive.files[6].setChildrenJSX([<h2 key ='1'>Week1</h2>,<a href='#' key = '2'>vectors</a>,<h2 key ='3'>Week2</h2>,<a href='#' key='4'>github.com notes</a>])
 
 ReactDOM.render(<App currentDrive={testDrive}/>,document.getElementById('root'));
 
