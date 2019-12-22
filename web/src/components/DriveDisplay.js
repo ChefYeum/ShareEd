@@ -10,18 +10,18 @@ function DriveDisplay(props){
     const useChildrenAsContent = currentFile.isLeaf ? true:false;
     return(
         <div>
-            <div>
-                <h1>{props.drive.name}</h1>
+            <div className='container'>
+                <h2 className='text-center'>{props.drive.name}</h2>
             </div>
-            <div>
+            <div className ='container'>
                 <ul>
                     {useChildrenAsContent ?
                     currentFile.children :
                     currentFile.children.filter(CFile => CFile != null)
                                         .map(CFile =>
-                                            <li key={CFile.id} onClick={()=>setCurrentFile(props.drive.files.indexOf(CFile))}>
+                                            <button className='full-button muted-button'key={CFile.id} onClick={()=>setCurrentFile(props.drive.files.indexOf(CFile))}>
                                                 {CFile.name}        
-                                            </li>)}
+                                            </button>)}
                 </ul>
             </div>
         </div>
