@@ -17,9 +17,6 @@ class App extends Component {
                 <div>
                     <DriveDisplay drive={this.state.currentDrive}/>
                 </div>
-                <div>
-                    <DocDisplay></DocDisplay>
-                </div>
             </div>
         );
     }
