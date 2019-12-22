@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import NavBar from './NavBar';
 import DriveDisplay from './DriveDisplay';
-import DocDisplay from './DocDisplay';
+import '../css/style.css';
 
 class App extends Component {
     state = {
