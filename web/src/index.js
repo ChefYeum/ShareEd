@@ -42,3 +42,4 @@ testDrive.files[2].setChildren([
 testDrive.files[6].setChildrenJSX([<h1 key ='1'>hello</h1>,<a key = '2'>link</a>])
 
 ReactDOM.render(<App currentDrive={testDrive}/>,document.getElementById('root'));
+ReactDOM.render(<App />,document.getElementById('root'));
