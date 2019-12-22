@@ -2,11 +2,7 @@ import React, { Component, useState } from 'react';
 
 ///
 ///
-const titleStyle = {
-    backgroundColor : 'Coral',
-    textAlign: 'center',
-    borderRadius: 15,
-}
+
 function DriveDisplay(props){
     const [currentFileI, setCurrentFile] = useState(0);
     const currentFile = props.drive.files[currentFileI];
@@ -14,7 +10,7 @@ function DriveDisplay(props){
     const useChildrenAsContent = currentFile.isLeaf ? true:false;
     return(
         <div>
-            <div style={titleStyle}>
+            <div>
                 <h1>{props.drive.name}</h1>
             </div>
             <div>
