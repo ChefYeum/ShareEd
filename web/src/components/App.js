@@ -11,12 +11,8 @@ class App extends Component {
     render() {
         return (
             <div>
-                <div>
-                    <NavBar/>
-                </div>
-                <div>
-                    <DriveDisplay drive={this.state.currentDrive}/>
-                </div>
+                <NavBar/>
+                <DriveDisplay drive={this.state.currentDrive}/>
             </div>
         );
     }
