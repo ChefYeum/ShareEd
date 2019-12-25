@@ -27,5 +27,10 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './src/index.html'
         })
-    ]
+    ],
+    devServer: { 
+        inline: true, 
+        port: 8080, 
+        proxy: { "/api/**": { target: 'http://localhost:4000', secure: false }  }
+    }
 }
