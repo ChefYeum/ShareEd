@@ -1,10 +1,11 @@
 import express from 'express';
 
 const app = express();
-const port = 3000;
+const port = 4000;
 
-app.get('/', (req, res) => res.json({
-    hippity: "hoppity"
-}));
+app.get('/api/data', (req, res) => res.json({
+        hippity: "hoppity"
+    })
+);
 
-app.listen(port, () => console.log(`Server listening on port http://localhost:${port}/`));
+app.listen(port, () => console.log(`Server listening on port http://localhost:${port}`));
