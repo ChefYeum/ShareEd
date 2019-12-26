@@ -1,7 +1,6 @@
 // This component will display a single Google Doc file as a Markdown style format 
 
 import React, { Component } from 'react';
-import '../css/style.css';
 
 class DocDisplay extends Component {
     state = {
