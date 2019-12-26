@@ -1,0 +1,110 @@
+/*additional styling classes*/
+/*
+colors:
+    primary:black,
+    secondary:white,
+    ternary:#5DBCD2
+*/
+/*doc*/
+body{
+    background-color: rgb(187, 228, 238) ;
+}
+/*navbar styling*/
+.navbar-div{
+    background-color:black;
+    margin:0;
+    padding:0;
+    display: inline-block;
+    width: 100%;
+    height: 3em;
+}
+.navbar-div img + .left{
+    margin-left: 0.1em;
+}
+.navbar-div > *{
+    color: white;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.navbar-div a:visited,
+.navbar-div a:link,
+.navbar-div a:active{
+    color:currentColor;
+    text-decoration:none;
+    border-bottom: none;
+}
+.navbar-div a:hover{
+    color: gray;
+    text-decoration:none;
+    border-bottom: none;
+}
+
+.navbar-div h2,.navbar-div h1{
+    margin:0;
+    padding:0;
+}
+.navbar-div .left{
+    float:left;
+    margin-left:0.6em;
+}
+
+.navbar-div .right{
+    float:right;
+    margin-right:0.6em;
+}
+/*Drive display*/
+.drive-display{
+    padding-left:5%;
+    padding-right:5%;
+}
+.drive-display > *{
+    display: block;
+}
+
+.drive-display .accent-button,
+.drive-display a.accent-button {
+  height: 2em;
+  font-size: 2em;
+  width: 100%;
+  color: white;
+  border: 1px solid #5DBCD2;
+  background: #5DBCD2; }
+  .drive-display .accent-button:hover,
+  .drive-display .accent-button:focus,
+  .drive-display .accent-button:active,
+  .drive-display a.accent-button:hover,
+  .drive-display a.accent-button:focus,
+  .drive-display a.accent-button:active {
+    color: white;
+    border: 1px solid #5DBCD2;
+    background: #5DBCD2; }
+
+/*utility*/
+.no-link-effects:hover,
+.no-link-effects:active,
+.no-link-effects:link,
+.no-link-effects:visited{
+    text-decoration:none !important;
+    color:currentColor !important;
+    border-bottom: none !important; 
+}
+
+.bottom-line{
+    border-style: solid;
+    border-color: black;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom-width: 1px;
+}
+.faded-bottom-line:after{
+    display:block;
+    content:"";
+    margin-top:10px;
+    border-top:1px solid rgba(0, 0, 0, 0.3);
+    width:100%;
+    height:3px;
+    background: radial-gradient(ellipse at 50% -100%,  rgba(0,0,0,0.6) 0,rgba(255,255,255,0) 70%); /* W3C */
+  }
