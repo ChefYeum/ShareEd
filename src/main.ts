@@ -10,9 +10,15 @@ app.get('/api/data', (req, res) => res.json({
     })
 );
 
+
 app.get('/api/q/drive', 
 (req, res) => 
-    JSON.stringify([fs.readFileSync(path.join(__dirname,'..','data',req.query.name + '.json'),"utf8")])
+    {
+      const file = fs.readFileSync(path.join(__dirname,'..','data',req.query.name + '.json'),"utf8");
+      const json = JSON.parse(file);
+      res.json([json]);
+
+    }
 );
  
 app.listen(port, () => console.log(`Server listening on port http://localhost:${port}`));
