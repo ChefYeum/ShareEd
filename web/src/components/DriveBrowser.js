@@ -11,46 +11,51 @@ function DriveBrowser(props){
         alert(`${err}`);
     }
 
-    function requestDrives(name, callBack)
-    {
+    function fetchDrives(name){
         fetch(`/api/q/drive?name=${name}`)
-            .then((res) => callBack(res.json()), (err) => handleFailure(err))
-    }
-
-    function updateState(jsonDrive){
-        setDrivesArray(jsonDrive);
-
-        if(jsonDrive.length == 0)
-        {
-            setStateCode(2);
-        }
-        else{
-            setStateCode(1);
-        }
+            .then((res) => res.json())
+            .then((data) => {
+                setDrivesArray(data);
+                if(data.length == 0)
+                {
+                    setStateCode(2);
+                }
+                else{
+                    setStateCode(1);
+                }
+            })
+            .catch((err) => handleFailure(err))
+            
+            
     }
     function handleSubmit(name){
         //reach for api
-        const json = requestDrives(name,(json)=>updateState(json))
-        setStateCode(3)
+
+        setStateCode(3);
+        fetchDrives(name);
     }
-    
+
+
     let jsx = null;
     switch (stateCode) {
         case 0:
             jsx = <SearchForm onSubmit={(name) => handleSubmit(name)}/>
             break;
         case 1:
-            jsx = <h2>found drives</h2>
+            jsx = <ul>{drivesArray.map(
+                (drive,index)=> <button key='index'className='accent-button' onClick={()=>props.onDriveChoice(drive)}>{drive.name}</button>)}
+                  </ul>
             break;
         case 2:
             jsx = <h2>no drives found</h2>
             break;
         case 3:
             jsx =<h2> loading..</h2>
+            break;
         default:
             break;
     };
-    return(jsx);
+    return(<div className='drive-browser'>{jsx}</div>);
 }
 
 export default DriveBrowser;

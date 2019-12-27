@@ -7,20 +7,36 @@ import DriveBrowser from './DriveBrowser';
 
 class App extends Component {
     state = {
-        currentDrive: this.props.currentDrive,
+        currentDrive: null,
         //0 - display browser, 1 - display selected drive
         stateCode: 0,
     }
 
-    handleSubmit(event){
-        
+    handleDriveChoice(drive){
+        this.setState({
+            currentDrive: drive,
+            stateCode: 1,
+        })
+    }
+
+    chooseContent(){
+        let jsxcontent = null;
+        if(this.state.stateCode === 0){
+            jsxcontent = <DriveBrowser onDriveChoice={(drive)=>this.handleDriveChoice(drive)}/>;
+        }
+        else{
+            console.log(this.state.currentDrive);
+            jsxcontent = <DriveDisplay drive={this.state.currentDrive}/>;
+        }
+        return jsxcontent;
     }
 
     render() {
+
         return (
             <div>
                 <NavBar></NavBar>
-                <DriveBrowser/>
+                {this.chooseContent()}
             </div>
         );
     }
