@@ -14,9 +14,15 @@ class SearchForm extends React.Component{
         });
     }
 
+    handleSubmit(event){
+        event.preventDefault();
+        this.props.onSubmit(this.state.value);
+
+    }
+
     render(){
         return(
-        <form onSubmit={(event) => event.preventDefault() || this.props.onSubmit(event.target.value)}>
+        <form onSubmit={(event) => this.handleSubmit(event)}>
             <label>Course Name:
                 <input 
                     type="text" value={this.state.value} 
