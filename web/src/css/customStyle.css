@@ -81,6 +81,21 @@ body{
     border: 1px solid #5DBCD2;
     background: #5DBCD2; }
 
+.drive-browser .accent-button,
+.drive-browser a.accent-button {
+  font-size: 2em;
+  color: white;
+  border: 1px solid #5DBCD2;
+  background: #5DBCD2; }
+  .drive-browser .accent-button:hover,
+  .drive-browser .accent-button:focus,
+  .drive-browser .accent-button:active,
+  .drive-browser a.accent-button:hover,
+  .drive-browser a.accent-button:focus,
+  .drive-browser a.accent-button:active {
+    color: white;
+    border: 1px solid #5DBCD2;
+    background: #5DBCD2; }
 /*utility*/
 .no-link-effects:hover,
 .no-link-effects:active,

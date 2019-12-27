@@ -26,23 +26,25 @@ testDrive.files = [
 ];
 
 testDrive.files[0].setChildren([
-    testDrive.files[1],
-    testDrive.files[2],
-    testDrive.files[3],
-    testDrive.files[4]]);
+    testDrive.files[1].id,
+    testDrive.files[2].id,
+    testDrive.files[3].id,
+    testDrive.files[4].id]);
 
 testDrive.files[1].setChildren([
-    testDrive.files[6],
-    testDrive.files[7],
-    testDrive.files[8],
-    testDrive.files[9]]);
+    testDrive.files[6].id,
+    testDrive.files[7].id,
+    testDrive.files[8].id,
+    testDrive.files[9].id]);
 
 testDrive.files[2].setChildren([
-    testDrive.files[10],
-    testDrive.files[11],
-    testDrive.files[12]]);
+    testDrive.files[10].id,
+    testDrive.files[11].id,
+    testDrive.files[12].id]);
 
 testDrive.files[6].setChildrenJSX([<h2 key ='1'>Week1</h2>,<a href='#' key = '2'>vectors</a>,<h2 key ='3'>Week2</h2>,<a href='#' key='4'>github.com notes</a>])
 
-ReactDOM.render(<App currentDrive={testDrive}/>,document.getElementById('root'));
+console.log(JSON.stringify(testDrive));
+
+ReactDOM.render(<App/>,document.getElementById('root'));
 

@@ -1,5 +1,7 @@
+
+import ReactDOMServer from 'react-dom/server';
 class DriveFile{
-    //children are other files, or if this file is a leaf, react elements
+    //children are other files, or if this file is a leaf, react elements as strings
     children = [];
     name = '';
     id = DriveFile.counter;
@@ -22,13 +24,13 @@ class DriveFile{
     }
     //we require that the jsx elements have pairwise unique keys
     addChildrenJSX(children){
-        this.children.push(children);
+        this.children.push(children.map(c => ReactDOMServer.renderToStaticMarkup(c)));
         this.isLeaf = true;
     }
 
     //we require that the jsx elements have pairwise unique keys
     setChildrenJSX(children){
-        this.children = children;
+        this.children = children.map(c => ReactDOMServer.renderToStaticMarkup(c));
         this.isLeaf = true;
     }
 

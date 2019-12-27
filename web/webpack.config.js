@@ -15,7 +15,8 @@ module.exports = {
                 exclude: /node_modules/,
                 use:{
                     loader: 'babel-loader'
-                }
+                },
+
             },
             {
                 test: /\.css$/i,
@@ -62,5 +63,8 @@ module.exports = {
         inline: true, 
         port: 8080, 
         proxy: { "/api/**": { target: 'http://localhost:4000', secure: false }  }
+    },
+    node: {
+      fs: 'empty'
     }
 }
