@@ -44,7 +44,6 @@ testDrive.files[2].setChildren([
 
 testDrive.files[6].setChildrenJSX([<h2 key ='1'>Week1</h2>,<a href='#' key = '2'>vectors</a>,<h2 key ='3'>Week2</h2>,<a href='#' key='4'>github.com notes</a>])
 
-console.log(JSON.stringify(testDrive));
 
 ReactDOM.render(<App/>,document.getElementById('root'));
 
