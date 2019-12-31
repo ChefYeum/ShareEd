@@ -8,6 +8,9 @@ colors:
 /*doc*/
 body{
     background-color: rgb(187, 228, 238) ;
+    width:100%;
+    min-width:450px;
+    min-height:600px;
 }
 /*navbar styling*/
 .navbar-div{
@@ -54,7 +57,9 @@ body{
     float:right;
     margin-right:0.6em;
 }
+
 /*Drive display*/
+
 .drive-display{
     padding-left:5%;
     padding-right:5%;
@@ -81,6 +86,16 @@ body{
     border: 1px solid #5DBCD2;
     background: #5DBCD2; }
 
+/* drive browser */
+.drive-browser {
+    padding-left:5%;
+    padding-right:5%;
+    padding-top:5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 .drive-browser .accent-button,
 .drive-browser a.accent-button {
   font-size: 2em;
@@ -96,6 +111,20 @@ body{
     color: white;
     border: 1px solid #5DBCD2;
     background: #5DBCD2; }
+/* drive-preview*/ 
+
+.drive-preview {
+    width: 100%;
+    border-radius: 15px;
+    border: 2px solid black;
+    background: #5DBCD2;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.drive-preview div{
+    display: inline-block;
+}
 /*utility*/
 .no-link-effects:hover,
 .no-link-effects:active,
@@ -122,4 +151,18 @@ body{
     width:100%;
     height:3px;
     background: radial-gradient(ellipse at 50% -100%,  rgba(0,0,0,0.6) 0,rgba(255,255,255,0) 70%); /* W3C */
+  }
+
+  .loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
   }
