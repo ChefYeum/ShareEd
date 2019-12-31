@@ -22,7 +22,7 @@ class SearchForm extends React.Component{
 
     render(){
         return(
-        <form className ='text-center' onSubmit={(event) => this.handleSubmit(event)}>
+        <form className ='search-form text-center' onSubmit={(event) => this.handleSubmit(event)}>
             <label >Course Name:
                 <input 
                     type="text" value={this.state.value} 
