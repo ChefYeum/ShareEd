@@ -40,7 +40,7 @@ function DriveBrowser(props){
             jsx = <div className ='drive-browser'><SearchForm onSubmit={(name) => handleSubmit(name)}/></div>;
             break;
         case 1:
-            jsx = <div className='full-container drive-browser float-left'>
+            jsx = <div className='drive-browser float-left'>
                     {drivesArray.map(
                         (drive,index) =>
                         <a key='index'className='no-link-effects' 
