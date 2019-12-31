@@ -114,16 +114,18 @@ body{
 /* drive-preview*/ 
 
 .drive-preview {
-    width: 100%;
+    width: 20em;
+    height: 16em;
     border-radius: 15px;
     border: 2px solid black;
     background: #5DBCD2;
     padding: 10px;
+    margin: 10px;
     display: flex;
     flex-direction: column;
 }
-.drive-preview div{
-    display: inline-block;
+.drive-preview:hover{
+    background-color: rgb(126, 205, 223);
 }
 /*utility*/
 .no-link-effects:hover,
