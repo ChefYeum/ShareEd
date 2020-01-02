@@ -7,8 +7,9 @@ Course material sharing platform
 2. Run `npm i` to install backend dependencies
 3. Run `cd web && npm i && cd ../` to install frontend dependencies 
 4. For ubuntu run `sudo apt install mongodb-server-core` to be able to run the mongo server
-5. Run `npm run dev` to start both frontend and backend server along with the mongo database
-6. Open `http://localhost:8080/` on your browser (it should in fact automatically open)
+5. using `sudo mkdir /data/db` and `sudo chown -R \`id -un\` /data` set up the database 
+6. Run `npm run dev` to start both frontend and backend server along with the mongo database
+7. Open `http://localhost:8080/` on your browser (it should in fact automatically open)
 
 ## Team
 - Dee Yeum ([ChefYeum](https://github.com/chefyeum))
