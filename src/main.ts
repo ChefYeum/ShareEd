@@ -23,10 +23,46 @@ app.get('/api/q/drive',
 (req, res) => 
     {
       db.collection('drives').find({$text: {$search: req.query.name}}).toArray((err,results)=>{
-        if(err) return console.log(err);
-        console.log(results);
+        if(err) return res.sendStatus(500);
+
         res.json(results);
       });
+    }
+);
+
+//requires sortedOn and dir as parameters
+app.get('/api/q/drives', 
+(req, res) => 
+    {
+      //1 or -1 for ascending or descending
+
+      let direction = req.query.dir;
+      console.log(direction + req.query.sortedOn);
+      switch (req.query.sortedOn)
+      {
+        case 'name':
+          db.collection('drives').find({}).sort({ name:direction}).toArray((err,results)=>{
+            if(err) return console.log(err);
+            res.json(results);
+          });
+          return;
+        case 'author':
+          db.collection('drives').find().sort({ author:direction}).toArray((err,results)=>{
+            if(err) return console.log(err);
+            res.json(results);
+          });
+          return;
+        case 'rating':
+          db.collection('drives').find().sort({ rating:direction}).toArray((err,results)=>{
+            if(err) return console.log(err);
+            res.json(results);
+          });
+          return;
+        default:
+            res.sendStatus(400);
+          return;
+      }
+      
     }
 );
 

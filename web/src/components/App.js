@@ -64,7 +64,7 @@ class App extends Component {
         switch (destination){
             case 'home':
                 this.setState({
-                    stateCode: 0
+                    stateCode: 2
                 })
                 break;
             case 'about':

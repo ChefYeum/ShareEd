@@ -6,7 +6,7 @@
   "scripts": {
     "server": "nodemon src/main.ts",
     "client": "cd web/ && npm start",
-    "database": "mongod --dbpath data",
+    "database": "mongod",
     "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run database\""
   },
   "repository": {
