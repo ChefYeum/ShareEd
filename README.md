@@ -4,7 +4,7 @@ Course material sharing platform
 
 ## Dependencies
 - MongoDB must be setup as `localhost:27017` (the default port) and be running `mongod`
-- `credentials.json` file must be located at the root directory of the repository
+- `credentials.json` file for Google API must be located at the root directory of the repository
 
 ## How to serve locally
 1. Make sure the dependencies above are satisfied 
