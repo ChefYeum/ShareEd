@@ -2,6 +2,8 @@
 
 import { google } from 'googleapis';
 
+import path from 'path';
+
 /**
  * The JWT authorization is ideal for performing server-to-server
  * communication without asking for user consent.
@@ -11,10 +13,10 @@ import { google } from 'googleapis';
  *
  * See the defaultauth.js sample for an alternate way of fetching compute credentials.
  */
-async function runSample() {
+async function getDriveItems() {
   // Create a new JWT client using the key file downloaded from the Google Developer Console
   const auth = new google.auth.GoogleAuth({
-    keyFile: "../credentials.json",
+    keyFile: path.join(__dirname, '..','credentials.json'),
     scopes: 'https://www.googleapis.com/auth/drive',
   });
   const client = await auth.getClient();
@@ -38,10 +40,9 @@ async function runSample() {
 }
 
 if (module === require.main) {
-  runSample()
+  getDriveItems()
     .then(console.log)
     .catch(console.error);
 }
 
-// Exports for unit testing purposes
-module.exports = {runSample};
+export default getDriveItems;

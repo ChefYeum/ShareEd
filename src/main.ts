@@ -1,50 +1,39 @@
 import express from 'express';
-import fs from 'fs';
 import path from 'path';
-import { getClient } from './mongo';
+import connect from './database';
+import DriveItem from './models/DriveItem';
+import getDriveItems from './googleapi';
 
-console.log('iam here');
 //load env variables;
-require('dotenv').config({path: path.join(__dirname,"..","variables.env")});
-//connect to mongo
-const mongoClient = getClient();
-var db = null;
+require('dotenv').config({path: path.join(__dirname,"..",".env")});
 
 const app = express();
-const port = process.env.PORT || 4000;
+const port = process.env.EXPRESS_PORT || 4000;
 
-app.get('/api/data', (req, res) => res.json({
+app.get('/api/test', (req, res) => res.json({
         hippity: "hoppity"
     })
 );
 
 
-app.get('/api/q/drive', 
-(req, res) => 
+app.get('/api/drive', (req, res) => 
     {
-      db.collection('drives').find({$text: {$search: req.query.name}}).toArray((err,results)=>{
-        if(err) return console.log(err);
-        console.log(results);
-        res.json(results);
-      });
+      // db.collection('drives').find({$text: {$search: req.query.name}}).toArray((err,results)=>{
+      //   if(err) return console.log(err);
+      //   console.log(results);
+      //   res.json(results);
+      // });
     }
 );
 
-app.put('/api/overwrite/drive', (req,res)=>{
-  db.collection('Drives').save(req.body, (err, result) =>{
-    if(err) return console.log(err);
+connect()
+  .then( (connection) => {
+    console.log("Succesfully connected to the MongoDB database");
 
-    console.log('saved to database');
-    res.redirect('/');
-  });
-})
+    getDriveItems()
+      .then((items) => DriveItem.create(items))
+      .catch(console.error);
 
-mongoClient.connect((err) =>{
-  if (err) return console.log(err);
-  console.log("Succesfully connected to the mongo database")
-  db = mongoClient.db('ShareEdData');
-  db.collection('drives').createIndex({name: 'text'});
-
-  app.listen(port, () => console.log(`Server listening on port http://localhost:${port}`));
-  //mongoClient.close();
-})
+    app.listen(port, () => console.log(`Server listening on port http://localhost:${port}`));
+  })
+  .catch(console.error);
