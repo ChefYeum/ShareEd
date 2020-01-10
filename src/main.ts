@@ -1,24 +1,39 @@
 import express from 'express';
-import fs from 'fs';
 import path from 'path';
+import connect from './database';
+import DriveItem from './models/DriveItem';
+import getDriveItems from './googleapi';
+
+//load env variables;
+require('dotenv').config({path: path.join(__dirname,"..",".env")});
 
 const app = express();
-const port = 4000;
+const port = process.env.EXPRESS_PORT || 4000;
 
-app.get('/api/data', (req, res) => res.json({
+app.get('/api/test', (req, res) => res.json({
         hippity: "hoppity"
     })
 );
 
 
-app.get('/api/q/drive', 
-(req, res) => 
+app.get('/api/drive', (req, res) => 
     {
-      const file = fs.readFileSync(path.join(__dirname,'..','data',req.query.name + '.json'),"utf8");
-      const json = JSON.parse(file);
-      res.json([json]);
-
+      // db.collection('drives').find({$text: {$search: req.query.name}}).toArray((err,results)=>{
+      //   if(err) return console.log(err);
+      //   console.log(results);
+      //   res.json(results);
+      // });
     }
 );
- 
-app.listen(port, () => console.log(`Server listening on port http://localhost:${port}`));
+
+connect()
+  .then( (connection) => {
+    console.log("Succesfully connected to the MongoDB database");
+
+    getDriveItems()
+      .then((items) => DriveItem.create(items))
+      .catch(console.error);
+
+    app.listen(port, () => console.log(`Server listening on port http://localhost:${port}`));
+  })
+  .catch(console.error);

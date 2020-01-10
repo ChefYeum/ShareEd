@@ -1,7 +1,10 @@
 
 class ParsedDrive{
+    name = 'undefined';
+    description = 'undefined';
+    author = 'undefined';
+    rating = null;
     files = [];
-    name = '';
 
     constructor(name)
     {

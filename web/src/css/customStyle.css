@@ -8,20 +8,25 @@ colors:
 /*doc*/
 body{
     background-color: rgb(187, 228, 238) ;
+    width:1100px;
+    margin: auto;
+    min-width:450px;
+    min-height:600px;
+    padding: 5px;
 }
+
 /*navbar styling*/
 .navbar-div{
     background-color:black;
     margin:0;
     padding:0;
-    display: inline-block;
     width: 100%;
     height: 3em;
 }
 .navbar-div img + .left{
     margin-left: 0.1em;
 }
-.navbar-div > *{
+.navbar-div *{
     color: white;
     position: relative;
     top: 50%;
@@ -54,7 +59,9 @@ body{
     float:right;
     margin-right:0.6em;
 }
+
 /*Drive display*/
+
 .drive-display{
     padding-left:5%;
     padding-right:5%;
@@ -81,6 +88,14 @@ body{
     border: 1px solid #5DBCD2;
     background: #5DBCD2; }
 
+/* drive browser */
+.drive-browser {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 .drive-browser .accent-button,
 .drive-browser a.accent-button {
   font-size: 2em;
@@ -96,6 +111,119 @@ body{
     color: white;
     border: 1px solid #5DBCD2;
     background: #5DBCD2; }
+/* drive-preview*/ 
+
+.drive-preview {
+    width: 20em;
+    height: 16em;
+    border-radius: 2px;
+    border: 2px solid black;
+    background: none;
+    padding: 10px;
+    padding-top: 0px;
+    margin: 10px;
+    color: black;
+    display: inline-block;
+}
+.drive-preview li{
+    list-style-type: none;
+}
+.drive-preview body{
+    border: 1px solid black;
+    background-color: white;
+}
+
+.drive-preview head{
+    display:inline-flex;
+    background-color: black;
+    color:white;
+}
+
+.drive-preview:hover{
+    background-color: rgb(126, 205, 223);
+}
+/*Search form*/
+.search-form{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+/* about  */
+.about-container{
+    position:relative;
+    height:33.5em;
+    background-color: rgb(126, 205, 223);
+    z-index: -2;
+    border-bottom-left-radius:1em;
+    border-bottom-right-radius:1em;
+}
+.about-img-parent{
+    text-align: center;
+}
+
+.about-img-parent .content{
+    padding: 0px 20px 20px 20px;
+}
+
+.about-img-parent .content *{
+    color: white;
+    text-align:center;
+    margin: 0px;
+    line-height: 1.5em;
+}
+.about-img-parent .content h2{
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+}
+.about-img-parent .content h2 span{
+    color: #5DBCD2;
+}
+.about-img-parent .content * span{
+    background-color: rgba(41, 37, 37, 0.767);
+    padding: 0.2em;
+
+}
+
+.about-img-parent .content .names{
+    font-weight: bold;
+}
+.about-img-parent{
+    overflow: hidden;
+    position: relative;
+    text-align: center center;
+    height: 400px;
+}
+.about-img-parent .edi-image{
+    position:absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background-image: url("../images/Edinburgh-by-night.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    filter: blur(3px);
+    margin: -5px -10px -10px -5px;
+    z-index: -1;
+}
+
+.about-under{
+    margin: 0px;
+    padding: 1em 0em 1em 1em;
+    background-color: rgba(41, 37, 37, 0.767);
+}
+.about-under *{
+    color: white;
+    margin:0px;
+}
+/*courses */
+.courses-container{
+    padding: 5px;
+    background-color: rgb(126, 205, 223);
+    z-index: -2;
+    border-bottom-left-radius:1em;
+    border-bottom-right-radius:1em;
+}
 /*utility*/
 .no-link-effects:hover,
 .no-link-effects:active,
@@ -122,4 +250,18 @@ body{
     width:100%;
     height:3px;
     background: radial-gradient(ellipse at 50% -100%,  rgba(0,0,0,0.6) 0,rgba(255,255,255,0) 70%); /* W3C */
+  }
+
+  .loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
   }

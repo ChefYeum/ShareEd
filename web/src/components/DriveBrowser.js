@@ -1,5 +1,6 @@
 import React, { Component, useState } from 'react';
-import SearchForm from './SearchForm'
+import SearchForm from './SearchForm';
+import DrivePreview from './DrivePreview';
 
 //will request array of ParsedDrives from backend
 function DriveBrowser(props){
@@ -29,33 +30,41 @@ function DriveBrowser(props){
             
     }
     function handleSubmit(name){
-        //reach for api
-
         setStateCode(3);
         fetchDrives(name);
     }
 
-
     let jsx = null;
     switch (stateCode) {
         case 0:
-            jsx = <SearchForm onSubmit={(name) => handleSubmit(name)}/>
+            jsx = <div className ='drive-browser'><SearchForm onSubmit={(name) => handleSubmit(name)}/></div>;
             break;
         case 1:
-            jsx = <ul>{drivesArray.map(
-                (drive,index)=> <button key='index'className='accent-button' onClick={()=>props.onDriveChoice(drive)}>{drive.name}</button>)}
-                  </ul>
+            jsx = <div className='drive-browser float-left'>
+                    {drivesArray.map(
+                        (drive,index) =>
+                        <a key='index'className='no-link-effects' 
+                            onClick={()=>props.onDriveChoice(drive)}>
+                                <DrivePreview name={drive.name} author={drive.author} rating={drive.rating} description={drive.description}/>
+                        </a>)
+                    }
+                  </div>;
             break;
         case 2:
-            jsx = <h2>no drives found</h2>
+            jsx =  <div className='drive-browser'>
+                        <h3>Could not find courses with similar name</h3>
+                        <button className='accent-button block' onClick={()=>setStateCode(0)}>back</button>
+                   </div>;   
             break;
         case 3:
-            jsx =<h2> loading..</h2>
+            jsx =<div className='drive-browser'>
+                    <div className='loader'></div>
+                </div>
             break;
         default:
             break;
     };
-    return(<div className='drive-browser'>{jsx}</div>);
+    return(jsx);
 }
 
 export default DriveBrowser;
